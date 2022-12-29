@@ -1,0 +1,44 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">  
+                <h2 class="text-center">Add product</h2>
+
+                <form action="/admin/addproduct" method="post" enctype="multipart/form-data">
+                    <label for="">Brand</label>
+                    <input type="text" name="Brand" class="form-control" required>
+
+                    <label for="">Description</label>
+                    <input type="text" name="Description" class="form-control" required>
+                    
+
+
+         <div class="form-group">
+                <label for="">Category</label>
+                <select class="form-control item" class="form-control item" name="Category" placeholder="Product Category">
+                    {{#each category}}
+                    <option>{{this.Brand}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+                    <label for="">Price</label>
+                    <input type="text" name="Price" class="form-control" required>
+
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image" required>
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image1" required>
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image2" required>
+                    <label for="">Image</label>
+                    <input type="file" class="form-control" name="image3" required>
+
+                    <button  type="submit" class="btn btn-secondary mt-4"  onclick="submitForm()"> >Add Product</button>
+                    <a href="/admin/all-products" class="btn btn-secondary mt-4 mx-5 ">Cancel</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

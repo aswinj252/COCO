@@ -1,0 +1,41 @@
+
+
+
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Users Edit and Modify</h2>
+    <table class="table table-hover " id="userView">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                 <th scope="col">Phone</th>
+                  <th scope="col">Status</th>
+                <th scope="col"> <a href="/admin/add-user" class="btn btn-success p-1">Add User</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each user}}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.Name}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.Phone}}</td>
+                <td>{{this.block}}</td>
+                <td>
+                    <a href="/admin/unblock-user?id={{this._id}}" id="block" class="btn btn-secondary py-1">unblock</a>
+                    <a href="/admin/block-user?id={{this._id}}" id="unblock"class="btn btn-dark py-1"
+                        onclick="return confirm ('Are you sure to Block {{this.email}}?')">Block</a>
+                </td>
+            </tr>
+            {{/each}}
+           
+            
+        </tbody>
+    </table>
+</div>
+<script>
+    $( function () {
+    $('#userView').DataTable();
+} );
+</script>

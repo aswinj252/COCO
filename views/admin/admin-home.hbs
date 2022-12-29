@@ -1,0 +1,248 @@
+<!-- Content -->
+
+<!-- Sale & Revenue Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+      <div class="col-sm-6 col-xl-3">
+        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+          <i class="fa fa-chart-line fa-3x text-light "></i>
+          <div class="ms-3">
+            <p class="mb-2">Total Orders</p>
+            <h6 class="mb-0">{{totalOrders}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+          <i class="fa fa-chart-bar fa-3x  text-light"></i>
+          <div class="ms-3">
+            <p class="mb-2">Total Users</p>
+            <h6 class="mb-0">{{TotalUsers}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+          <i class="fa fa-chart-area fa-3x text-light"></i>
+          <div class="ms-3">
+            <p class="mb-2">Total Products</p>
+            <h6 class="mb-0">{{totalProducts}}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="bg-dark rounded d-flex align-items-center justify-content-between p-4">
+          <i class="fa fa-chart-pie fa-3x  text-light"></i>
+          <div class="ms-3">
+            <p class="mb-2">Total Sales</p>
+            <h6 class="mb-0">{{salesData}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sale & Revenue End -->
+
+<div class="row">
+  <div class="col-lg-8 mb-4 order-0">
+    </div>
+  </div>
+ 
+  <!-- Total Revenue -->
+  <div id="" class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col-md-8">
+          <h5 class="card-header m-0 me-2 pb-3">Daily sales</h5>
+          {{!-- <div id="totalRevenueChart" class="px-2"></div> --}}
+        </div>
+        kkll<div>
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="" class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col-md-8">
+          <h5 class="card-header m-0 me-2 pb-3">MOnthly sales</h5>
+          {{!-- <div id="totalRevenueChart" class="px-2"></div> --}}
+        </div>
+        kkll<div>
+    <canvas id="MyChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="" class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col-md-8">
+          <h5 class="card-header m-0 me-2 pb-3">Yearly sales</h5>
+          {{!-- <div id="totalRevenueChart" class="px-2"></div> --}}
+        </div>
+        kkll<div>
+    <canvas id="mychart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+<div class="row">
+
+  <!-- Transactions -->
+  
+  <!--/ Transactions -->
+</div> 
+<div class="ps-10">
+            <button class="btn btn-sm btn-success " onclick="exportToExcel()">Export Excel <i
+                    class="bi bi-file-earmark-excel"></i></button>
+            <button class="btn btn-sm btn-danger " onclick="exportToPDF()">Export PDF <i
+                    class="bi bi-filetype-pdf"></i></button>
+        </div>
+<section>
+  <div class="container">
+   
+        <table class="table mt-5 "  id="invoice">
+            <thead>
+                <tr>
+                    {{!-- <th>NO</th> --}}
+                    <th scope="col">No.</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Total Sales</th>
+                    <th scope="col">Total Revenue</th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each daily}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this._id}}</td>
+                   
+                   <td>{{this.count}}</td>
+                   
+                    <td>{{this.totalAmount}}</td>
+                    
+                    
+
+                </tr>
+                {{/each}}
+
+
+            </tbody>
+        </table>
+    </div>
+</section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>  
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [{{#each daily}}'{{_id}}',{{/each}}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{{#each daily}} {{totalAmount}},{{/each}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  const ct = document.getElementById('MyChart');
+
+  new Chart(ct, {
+    type: 'bar',
+    data: {
+      labels: [{{#each monthly}}'{{_id}}',{{/each}}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{{#each monthly}} {{totalAmount}},{{/each}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+  const cx = document.getElementById('mychart');
+
+  new Chart(cx, {
+    type: 'bar',
+    data: {
+      labels: [{{#each yearly}}'{{_id}}',{{/each}}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{{#each yearly}} {{totalAmount}},{{/each}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  function exportToExcel() {
+        
+        let table = new Table2Excel();
+        console.log(table)
+        table.export(document.querySelectorAll("table.table"))
+    }
+
+
+
+    function exportToPDF() {
+        const element = document.getElementById('invoice');
+        element.style.width = '100%';
+        element.style.height = '900px';
+        let opt = {
+            margin: 10,
+            filename: 'Burrberri.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 1 },
+            jsPDF: { unit: 'mm', orientation: 'landscape' }
+
+        }
+        html2pdf().set(opt)
+            .from(element)
+            .save();
+
+    }
+
+</script>
+
+
+<!-- / Content -->

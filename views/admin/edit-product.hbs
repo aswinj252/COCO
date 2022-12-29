@@ -1,0 +1,47 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">  
+                <h2 class="text-center">Edit product</h2>
+
+                <form action="/admin/edit-product?id={{product._id}}" method="post" enctype="multipart/form-data">
+                    <label for="">Brand</label>
+                    <input type="text" name="Brand" class="form-control"  value="{{product.Brand}}"required>
+
+                    <label for="">Description</label>
+                    <input type="text" name="Description" class="form-control"value="{{product.Description}}" required>
+                    
+                    <div class="form-group">
+                <label for="">Category</label>
+                <select class="form-control item" class="form-control item" name="Category" placeholder="Product Category">
+                    {{#each category}}
+                    <option>{{this.Brand}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+
+                    <label for="">Price</label>
+                    <input type="text" name="Price" class="form-control"value="{{product.Price}}" required>
+
+                    <label for="">Image</label>
+                    <img src="/prodImages/{{product.image}}" alt="" style="width:100px;height:auto">
+                    <input type="file" class="form-control" name="image" value="/prodImages/{{product.image}}.jpg">
+
+                    <img src="/prodImages/{{product.image1}}" alt="" style="width:100px;height:auto">
+                    <input type="file" class="form-control" name="image1" value="/prodImages/{{product.image1}}">
+
+                    <img src="/prodImages/{{product.image2}}" alt="" style="width:100px;height:auto">
+                    <input type="file" class="form-control" name="image2" value="/prodImages/{{product.image2}}">
+
+                    <img src="/prodImages/{{product.image3}}" alt="" style="width:100px;height:auto">
+                    <input type="file" class="form-control" name="image3" value="/prodImages/{{product.image3}}">
+
+                    <button type="submit" class="btn btn-secondary mt-4">Edit Product</button>
+                    <a href="/admin/view-products" class="btn btn-secondary mt-4 mx-5 ">Cancel</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

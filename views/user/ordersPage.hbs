@@ -1,0 +1,53 @@
+
+
+
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Orders</h2>
+    <table class="table table-hover " id="userView">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Address</th>
+                 <th scope="col">mobile</th>
+                 <th scope="col">Pin <code></code></th>
+                <th scope="col">Amount</th>
+                
+                  <th scope="col">Payment Method</th>
+                  
+                  <th scope="col">status</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {{#each order}}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.date}}</td>
+                <td>{{this.deliveryDetails.address}}</td>
+                <td>{{this.deliveryDetails.phoneNumber}}</td>
+                  <td>{{this.deliveryDetails.postcode}}</td>
+                <td>{{this.totalAmount}}</td>
+                  <td>{{this.paymentMethod}}</td>
+
+                <td>{{this.status}}</td>
+
+              
+
+                <td>
+                    <a href="/view-order-products?id={{this._id}}" id="" class="btn btn-secondary py-1">view products</a>
+                   
+                      
+                </td>
+            </tr>
+            {{/each}}
+           
+            
+        </tbody>
+    </table>
+</div>
+<script>
+    $( function () {
+    $('#userView').DataTable();
+} );
+</script>

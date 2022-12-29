@@ -1,0 +1,437 @@
+<body>
+
+    <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+        <div class="container">
+            <div class="row">
+                <div class="mobile-menu">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu Area End Here -->
+    </header>
+    <!-- Header Area End Here -->
+    <!-- Begin Li's Breadcrumb Area -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Checkout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Li's Breadcrumb Area End Here -->
+    <!--Checkout Area Strat-->
+    <div class="checkout-area pt-60 pb-30">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <form action="" id="checkout-form">
+                        <div class="checkbox-form">
+                             <div class="row">
+                <div class="col-12">
+                    <div class="coupon-accordion">
+                        <!--Accordion Start-->
+                        {{!-- <h3>Returning customer? <span id="showlogin">Click here to login</span></h3> --}}
+                        {{!-- <div id="checkout-login" class="coupon-content">
+                            <div class="coupon-info">
+                                <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed
+                                    est sit amet ipsum luctus.</p>
+                                <form action="#">
+                                    <p class="form-row-first">
+                                        <label>Username or email <span class="required">*</span></label>
+                                        <input type="text">
+                                    </p>
+                                    <p class="form-row-last">
+                                        <label>Password <span class="required">*</span></label>
+                                        <input type="text">
+                                    </p>
+                                    <p class="form-row">
+                                        <input value="Login" type="submit">
+                                        <label>
+                                            <input type="checkbox">
+                                            Remember me
+                                        </label>
+                                    </p>
+                                    <p class="lost-password"><a href="#">Lost your password?</a></p>
+                                </form>
+                            </div>
+                        </div> --}}
+                        <!--Accordion End-->
+                        <!--Accordion Start-->
+                        <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
+                        <div id="checkout_coupon" class="coupon-checkout-content">
+                            <div class="coupon-info">
+                            
+                                    <p class="checkout-coupon">
+                                        <input placeholder="Coupon code" name="couponcode" id="couponName" type="text">
+                                        <button class="flex-c-m stext-101 size-118 bg8 bor13 hov-btn3 trans-04 pointer " id="applyCouponBtn"
+                      onclick="applyCoupon(event)">Apply Coupon</button>
+                                    </p>
+                               
+                            </div>
+                        </div>
+                        <!--Accordion End-->
+                    </div>
+                </div>
+            </div>
+                            <h3>Billing Details</h3>
+                            <div class="row">
+<div class="col-lg-12">
+                                    <div class="billing-select mb-20">
+                                        <label>Choose Your Address <abbr class="required"
+                                                title="required">*</abbr></label>
+                                        <select onchange="getAddress()" placeholder="Please" id="address">
+                                            <option>Select</option>
+                                            {{#each address}}
+
+                                            <option value="{{this.Address.addressId}}">{{this.Address.Fname}},
+                                                {{this.Address.Street}}, {{this.Address.PostCode}} </option>
+                                            {{/each}}
+
+                                        </select>
+                                    </div>
+                                    <h4>Delivery Address</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="country-select clearfix">
+                                        <label>Country <span class="required">*</span></label>
+                                        <select class="nice-select wide" id="country" name="country">
+                                            <option data-display="Bangladesh">Bangladesh</option>
+                                            <option value="uk">London</option>
+                                            <option value="rou">Romania</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">Germany</option>
+                                            <option value="aus">Australia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label> Name <span required>*</span></label>
+                                        <input placeholder="" name="Fname"id="name" value="" type="text">
+                                           
+                                    </div>
+                                </div>
+                                {{!-- <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Last Name <span class="required">*</span></label>
+                                        <input placeholder="" name="Lname" type="text">
+                                    </div>
+                                </div> --}}
+                                {{!-- <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Company Name</label>
+                                        <input placeholder="" type="text">
+                                    </div>
+                                </div> --}}
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Address <span required>*</span></label>
+                                        <input placeholder="Street address" id="address" name="address" type="text">
+                                    </div>
+                                </div>
+                                {{!-- <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
+                                    </div>
+                                </div> --}}
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Town / City <span required>*</span></label>
+                                        <input type="text" name="town" id="town" value="{{address.Address.town}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>State / County <span required>*</span></label>
+                                        <input placeholder="" type="text" id="state" name="state">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Postcode / Zip <span required>*</span></label>
+                                        <input placeholder="" type="number" id="pincode" name="pincode">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Email Address <span required>*</span></label>
+                                        <input placeholder="" type="email" id="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Phone<span required>*</span></label>
+                                        <input type="number" id="Phone" name="phone">
+                                        <input type="text" name="userId"  value="{{user._id}}" hidden>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list create-acc">
+                                        <input id="cbox" type="checkbox">
+                                        <label>Payment option</label>
+                                    </div>
+                                    <div id="cbox-info" class="checkout-form-list create-account">
+                                        <div class="form-check">
+                                            <input type="radio" name="payment-method" id="COD" value="COD"
+                                                style="width: 15px;" checked />
+                                            <label for="">COD</label>
+                                        </div>
+
+                                        <div class="form-check mb-4">
+                                            <input type="radio" name="payment-method" id="ONLINE" value="ONLINE"
+                                                style="width: 15px;" />
+                                            <label for="">Online</label>
+                                                      
+                                        </div>
+                                        <div class="form-check mb-4">
+                                            <input type="radio" name="payment-method" id="PAYPAL" value="PAYPAL"
+                                                style="width: 15px;" />
+                                            <label for="">PAYPAL</label>
+                                                      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="your-order">
+                        <h3>Your order</h3>
+                        <div class="your-order-table table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="cart-product-name">Product</th>
+                                        <th class="cart-product-total">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each products}}
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name"> {{this.product.Brand}}<strong
+                                                class="product-quantity"> x {{this.quantity}}</strong></td>
+                                        <td class="cart-product-total"><span
+                                                class="amount" >{{this.product.Price}}</span></td>
+                                        {{/each}}
+                                    </tr>
+
+
+                                </tbody>
+                                <tfoot>
+                                    <tr class="cart-subtotal">
+                                        <th>Cart Subtotal</th>
+                                        <td><span   class="amount">{{this.total}}</span></td>
+                                          
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Order Total</th>
+                                        <td><strong><span class="amount" id="totalll" >&#8377;{{this.total}}</span></strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-accordion">
+
+                                <div class="order-button-payment">
+                                    <input value="Place order" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Checkout Area End-->
+
+</body>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    $("#checkout-form").submit((e) => {
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhu")
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                alert(response)
+                console.log(response)
+                if (response.codSuccess) {
+                    location.href = '/orderPlaced'
+                } else if (response.pay) {
+                    location.replace(response.linkto)
+                }
+
+                else {
+                    razorpayPayment(response)
+
+                }
+
+            }
+        })
+    })
+
+    function razorpayPayment(order) {
+        console.log(order, "lllllllllllllllllllllllllllllllllllllllll")
+        var options = {
+            "key": "rzp_test_Z6qSb9eRCZFMvV", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "coco",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+
+
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+
+                if (response.status) {
+                    location.href = '/orderPlaced'
+                }
+
+                else {
+                    alert('paymet failed')
+                }
+            }
+        })
+    }
+function getAddress() {
+    let address = document.getElementById('address')
+    let addressId = address.options[address.selectedIndex].value
+    $.ajax({
+        url: "/getAddress",
+        data: {
+            addressId: addressId
+        },
+        method: 'get',
+        success: (response) => {
+            if (response.status) {
+                console.log(response)
+                console.log(response.Name)
+                document.getElementById('country').value = response.country
+                document.getElementById('name').value = response.Fname
+                document.getElementById('address').value = response.address
+                document.getElementById('town').value = response.town
+                document.getElementById('state').value = response.state
+            
+                document.getElementById('pincode').value = response.pincode
+                document.getElementById('email').value = response.email
+                document.getElementById('Phone').value = response.phone
+              
+            } else {
+               document.getElementById('country').value = ""
+                document.getElementById('name').value =""
+                document.getElementById('address').value =""
+                document.getElementById('town').value = ""
+                document.getElementById('state').value = ""
+          
+                document.getElementById('pincode').value =""
+                document.getElementById('email').value = ""
+                document.getElementById('Phone').value =""
+              
+            }
+
+        }
+    })
+}
+
+function applyCoupon(event){
+  event.preventDefault()
+  let coupon=document.getElementById('couponName').value;
+ 
+  $.ajax({
+    
+    url: '/applyCoupon',
+    data: {
+      coupon
+    },
+    method: 'post',
+    success:(response)=>{
+        console.log(response)
+        console.log(response.amount,'kjkjk')
+      if(response.verify){
+        console.log("hey hey hey")
+           console.log(response.amount,'kjkjk')
+       // document.getElementById('discount').innerHTML=response.discountAmount
+        document.getElementById('totalll').innerHTML= response.amount
+       // document.getElementById('percentage').innerHTML=response.couponData.couponPercentage
+        document.getElementById('error').innerHTML = ''
+        document.getElementById('error2').innerHTML = '(Coupon has Applied)'
+        document.getElementById("applyCouponBtn").hidden = true;
+        document.getElementById('deleteCouponBtn').hidden=false;
+      }
+      else{
+          console.log("hoy hoy hohy")
+       // document.getElementById('discount').innerHTML= "₹ " +0
+        document.getElementById('totalll').innerHTML= "₹ "+response.Total
+      //  document.getElementById('percentage').innerHTML= 0 + "%"
+
+        if(response.used){
+        
+          document.getElementById('error2').innerHTML=response.used;
+        }
+        else if(response.minAmount){
+          document.getElementById('error').innerHTML = response.minAmountMsg;
+        }
+        else if(response.maxAmount){
+          document.getElementById('error').innerHTML = response.maxAmountMsg
+        }
+        else if(response.invalidDate){
+          document.getElementById('error').innerHTML = response.invalidDateMsg
+        }
+        else if(response.invalidCoupon){
+          document.getElementById('error').innerHTML = response.invalidCouponMsg
+        }
+        else if(response.noCoupon){
+          document.getElementById('error').innerHTML = 'Invalid Coupon Details'
+        }
+      }
+    }
+    
+  
+
+});
+}
+</script>
+
+<!-- checkout31:27-->

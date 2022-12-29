@@ -1,0 +1,18 @@
+<section >
+    <div class="container fluid   ps-5">
+        <div class="row">
+            {{#each products}}
+            <div class="card col-lg-3 col-md-4 col-sm-6 xm-12 mt-4  mr-5 " style="border: none;">
+                <img style="height: 250px " src="/product-images/{{this._id}}.jpg" alt="...">
+                <div class="card-body" style="background-color:rgb(248,249,250);">
+                    <h5 class="card-title">{{this.Brand}}</h5>
+                    <p class="caext">{{this.Description}}</p>
+                    <p>{{this.Price}} <b>INR</b></p>
+                    <a href="#" class="btn btn-secondary">buy now</a>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</section>

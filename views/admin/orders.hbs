@@ -1,0 +1,106 @@
+
+
+
+
+<div class="container">
+    <h2 class="text-center mt-5 mb-3">Order Management</h2>
+    <table class="table table-hover " id="userView">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                 <th scope="col">Phone</th>
+                 <th scope="col">Amount </th>
+                 <th scope="col">Payment Method</th>
+                  <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                      <th scope="col">View</th>
+                    
+                {{!-- <th scope="col"> <a href="/admin/add-user" class="btn btn-success p-1">Add User</a></th> --}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.deliveryDetails.name}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.deliveryDetails.phoneNumber}}</td>
+                <td>{{this.totalAmount}}</td>
+                <td>{{this.paymentMethod}}</td>
+                <td>{{this.status}}</td>
+                <td>
+                   <div class="form-group">
+                <label for=""></label>
+                <select  onchange="deliveryStatusUpdate(value,'{{this._id}}','{{this.userid}}')"class="form-control item" >
+                  <option value="{{this.status}}" selected>
+									{{this.status}}
+                  </option>
+
+                   
+								{{#isEqual this.status 'placed'}}
+								<option value="Shipped">Shipped</option>
+								<option value="Delivered">Delivered</option>
+								
+								{{!-- <option value="Delivered">Pending</option> --}}
+								<option value="cancelled">Cancelled</option>
+								{{/isEqual}}
+
+                  {{#isEqual this.status 'Shipped'}}
+								
+								<option value="Delivered">Delivered</option>
+								
+								{{!-- <option value="Delivered">Pending</option> --}}
+								<option value="cancelled">Cancelled</option>
+								{{/isEqual}}
+								{{#isEqual this.status 'Delivered'}}
+								
+								{{!-- <option value="Delivered">Pending</option> --}}
+								{{/isEqual}}
+							</select>
+                  
+            </div>
+                
+                <td>
+                    <a href="/admin/view-order-product?id={{this._id}}" id="" class="btn btn-secondary py-1">view products</a>
+                   
+                      
+                </td>
+            </tr>
+            {{/each}}
+           
+            
+        </tbody>
+    </table>
+</div>
+<script>
+    $( function () {
+    $('#userView').DataTable();
+} );
+
+
+
+		
+console.log('jjjjjjjjjjjjfsfsafal;fjskdfuck')
+function deliveryStatusUpdate(value,orderId){
+    console.log(value,'valueeeeeeeee')
+    console.log(orderId,'orderrrrrrrrrrrr')
+ 
+
+    $.ajax({
+        url:'/admin/product-status',
+        data:{
+            order:orderId,
+           
+            valueChange:value
+        },
+        method:'post',
+        success:(response)=>{
+            alert(response)
+			location.reload()
+        }
+    })
+}
+
+</script>

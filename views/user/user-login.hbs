@@ -1,0 +1,37 @@
+<body class="loginBody mx-auto ">
+    <div class="outer w-50 mx-auto ">
+
+        <h2 >Login Page</h2>
+        <form action="/user-login" id="login" method="POST">
+            <div class="form-group">
+                <label for="inputEmail4">Email Id <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" name="Email" id="email"onkeyup=" validateEmail()"
+                    placeholder="Enter your email id" required>
+                    <span id="email-error"></span><br>
+
+                <label for="inputPassword4">Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" name="Password" id="inputPassword4"
+                    placeholder="Enter Your Password" required>
+                <br>
+                {{#if loginErr}}
+                <h6 class="text-warning"> Invalid Credentials !</h6>
+                {{/if}}
+                {{#if blockerr}}
+                <h6 class="text-warning"> Your account is blocked</h6>
+                {{/if}}
+                <button type="submit" class="btn btn-secondary">Log in</button>
+                <a class="btn btn-secondary" href="/otplogin" role="button">otp login</a>
+                <br><br>
+                <a class="text-decoration-none text-dark" href="/signup">Create user Account</a><br>
+
+            
+
+            </div>
+ 
+
+        </form>
+
+
+    </div>
+
+</body>

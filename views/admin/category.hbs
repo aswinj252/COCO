@@ -1,0 +1,47 @@
+
+<section>
+    <div class="container">
+        
+
+        <div class="">  
+            <a href="/admin/add-category" class="btn btn-secondary ml-auto mt-5" >Add Category</a>  
+        </div>
+        <table class="table mt-5 " id="productView">
+            <thead>
+                <tr>
+                    {{!-- <th>NO</th> --}}
+                    <th scope="col">No.</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Discription</th>
+                    
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each category}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.Brand}}</td>
+                   
+                   
+                   
+                    <td>{{this.Description}}</td>
+                    
+                    <td>
+                        <a href="/admin/edit-category?id={{this._id}}" class="btn btn-secondary py-1 my-1">Edit &nbsp;&nbsp;&nbsp;</a> 
+                        <a href="/admin/delete-category/{{this._id}}" class="btn btn-dark py-1 " onclick="return confirm('Are you wanted to delete this {{this.Brand}} ?')">Delete</a></td>
+
+                </tr>
+                {{/each}}
+
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    $( function () {
+    $('#productView').DataTable();
+} );
+</script>
